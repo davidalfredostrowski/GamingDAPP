@@ -1,0 +1,304 @@
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+Last login: Fri Dec 20 21:35:10 2024 from 50.4.165.247
+ubuntu@ip-172-31-24-70:~$ ls
+firstPayable  game  gaming  node_modules  package-lock.json  package
+ubuntu@ip-172-31-24-70:~$ cd gaming
+ubuntu@ip-172-31-24-70:~/gaming$ ls
+README.md  cache      hardhat.config.js  node_modules       package.
+artifacts  contracts  ignition           package-lock.json  test
+ubuntu@ip-172-31-24-70:~/gaming$
+npx hardhat console --network localhost
+Welcome to Node.js v22.11.0.
+Type ".help" for more information.
+> const signers = await ethers.getSigners();
+undefined
+> const contract =  await ethers.getContractFactory("Gaming")
+undefined
+> const cd = await contract.deploy()
+undefined
+> const [deployer] = await ethers.getSigners();
+undefined
+> await ethers.provider.getBalance(cd.target)
+0n
+> cd.target
+'0x5FbDB2315678afecb367f032d93F642f64180aa3'
+> cd.fundGame({value: ethers.parseEther("100.0")})
+Promise {
+  <pending>,
+  [Symbol(async_id_symbol)]: 4196,
+  [Symbol(trigger_async_id_symbol)]: 14
+}
+> await ethers.provider.getBalance(cd.target)
+100000000000000000000n
+> await cd.winOrLose(10, true, {from: signers[0] ,value: ethers.pars") })
+ContractTransactionResponse {
+  provider: HardhatEthersProvider {
+    _hardhatProvider: LazyInitializationProviderAdapter {
+      _providerFactory: [AsyncFunction (anonymous)],
+      _emitter: [EventEmitter],
+      _initializingPromise: [Promise],
+      provider: [BackwardsCompatibilityProviderAdapter]
+    },
+    _networkName: 'localhost',
+    _blockListeners: [],
+    _transactionHashListeners: Map(0) {},
+    _eventListeners: []
+  },
+  blockNumber: 3,
+  blockHash: '0xaea7e16a2d92edb8f489b5b409d4ccd6cddf093c0d854a8b8326',
+  index: undefined,
+  hash: '0x6d56babc635804af1707d4f3a0a67be0f7d3be2b90093d07578cde74f
+  type: 2,
+  to: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+  nonce: 2,
+  gasLimit: 30000000n,
+  gasPrice: 854713780n,
+  maxPriorityFeePerGas: 204961927n,
+  maxFeePerGas: 854713780n,
+  maxFeePerBlobGas: null,
+  data: '0xfc541ef3000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000001'
+  value: 21000000000000000000n,
+  chainId: 31337n,
+  signature: Signature { r: "0xba2210344953b3f279b111983441bb958280e7fbe09c8618e6a5", s: "0x7deb9fbe5b99290d2c9305a2c0ca81d1d44c6db6ed40b0eba3c8", yParity: 0, networkV: null },
+  accessList: [],
+  blobVersionedHashes: null
+}
+> const contractbal2 =  await ethers.provider.getBalance(cd.target)
+undefined
+> contractbal2
+79000000000000000000n
+> await ethers.provider.getBalance(signers[0])
+9920998996493597319356n
+> contractbal2
+79000000000000000000n
+> await ethers.provider.getBalance(cd.target)
+79000000000000000000n
+> await cd.winOrLose(10, true, {from: signers[0] ,value: ethers.parseEther("1.0") })
+ContractTransactionResponse {
+  provider: HardhatEthersProvider {
+    _hardhatProvider: LazyInitializationProviderAdapter {
+      _providerFactory: [AsyncFunction (anonymous)],
+      _emitter: [EventEmitter],
+      _initializingPromise: [Promise],
+      provider: [BackwardsCompatibilityProviderAdapter]
+    },
+    _networkName: 'localhost',
+    _blockListeners: [],
+    _transactionHashListeners: Map(0) {},
+    _eventListeners: []
+  },
+  blockNumber: 4,
+  blockHash: '0x7d34f9ec486c5f7e4a7a2f680f45577b501c725cbb36ca790825e7a3be18bf2b',
+  index: undefined,
+  hash: '0xa1d8786760b9bbf4b925320775957aa20dcbdb8505cb73b34c520f85dbe13702',
+  type: 2,
+  to: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+  nonce: 3,
+  gasLimit: 30000000n,
+  gasPrice: 748444560n,
+  maxPriorityFeePerGas: 179384373n,
+  maxFeePerGas: 748444560n,
+  maxFeePerBlobGas: null,
+  data: '0xfc541ef3000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000001',
+  value: 1000000000000000000n,
+  chainId: 31337n,
+  signature: Signature { r: "0xdfdcee0d836356f829c48cfd60ea18cd234e7741c0508eaaabddb031c6491506", s: "0x387f64da4a59c7eacd1fbc00a8cddea7c581836cd80033a976ff1c339040f930", yParity: 0, networkV: null },
+  accessList: [],
+  blobVersionedHashes: null
+}
+> await ethers.provider.getBalance(cd.target)
+78000000000000000000n
+> await ethers.provider.getBalance(signers[0])
+9921998962194628468236n
+> val s_bal = await ethers.provider.getBalance(signers[0])
+val s_bal = await ethers.provider.getBalance(signers[0])
+    ^^^^^
+
+Uncaught SyntaxError: Unexpected identifier 's_bal'
+> var s_bal = await ethers.provider.getBalance(signers[0])
+undefined
+> s_bal
+9921998962194628468236n
+> await cd.winOrLose(10, true, {from: signers[0] ,value: ethers.parseEther("1.0") })
+ContractTransactionResponse {
+  provider: HardhatEthersProvider {
+    _hardhatProvider: LazyInitializationProviderAdapter {
+      _providerFactory: [AsyncFunction (anonymous)],
+      _emitter: [EventEmitter],
+      _initializingPromise: [Promise],
+      provider: [BackwardsCompatibilityProviderAdapter]
+    },
+    _networkName: 'localhost',
+    _blockListeners: [],
+    _transactionHashListeners: Map(0) {},
+    _eventListeners: []
+  },
+  blockNumber: 5,
+  blockHash: '0xa21c9ec27fb3317944ccde5703112af5403124ca47d9232f0d6de73a2ed2e5fc',
+  index: undefined,
+  hash: '0xbe8833e957bf23bac7014688aec649d20472bc3a1ad1642fcc88b1b77df9769d',
+  type: 2,
+  to: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+  nonce: 4,
+  gasLimit: 30000000n,
+  gasPrice: 655174815n,
+  maxPriorityFeePerGas: 157080957n,
+  maxFeePerGas: 655174815n,
+  maxFeePerBlobGas: null,
+  data: '0xfc541ef3000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000001',
+  value: 1000000000000000000n,
+  chainId: 31337n,
+  signature: Signature { r: "0x0ddf777f0227cb6a0415332d59ceb0342ed06472167d95c0938b6998bf2d1dda", s: "0x2873689e4f0edf6bc09adcc829d250f70187378ef0de379694de304c383d9dd3", yParity: 0, networkV: null },
+  accessList: [],
+  blobVersionedHashes: null
+}
+> await ethers.provider.getBalance(signers[0])
+9922998932169932221231n
+> s_bal
+9921998962194628468236n
+> await cd.winOrLose(10, true, {from: signers[0] ,value: ethers.parseEther("1.0") })
+ContractTransactionResponse {
+  provider: HardhatEthersProvider {
+    _hardhatProvider: LazyInitializationProviderAdapter {
+      _providerFactory: [AsyncFunction (anonymous)],
+      _emitter: [EventEmitter],
+      _initializingPromise: [Promise],
+      provider: [BackwardsCompatibilityProviderAdapter]
+    },
+    _networkName: 'localhost',
+    _blockListeners: [],
+    _transactionHashListeners: Map(0) {},
+    _eventListeners: []
+  },
+  blockNumber: 6,
+  blockHash: '0x3ceb595b858d945c837282865a4b00348e041119f88cda84daf0fab8e7dd16de',
+  index: undefined,
+  hash: '0x302619acba487b7f6783bace99e861f8f345f0dd8328f3fe1b0999ee8cda3001',
+  type: 2,
+  to: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+  nonce: 5,
+  gasLimit: 30000000n,
+  gasPrice: 573528169n,
+  maxPriorityFeePerGas: 137505825n,
+  maxFeePerGas: 573528169n,
+  maxFeePerBlobGas: null,
+  data: '0xfc541ef3000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000001',
+  value: 1000000000000000000n,
+  chainId: 31337n,
+  signature: Signature { r: "0x3547ca1388b680b6c360e86c1740e1ff7ec09a41149bcb63ca03f8e3f1bd164b", s: "0x335ccdc49fbdf88469991f58af85c64b99754b9b169eb599ee86c4956f92577e", yParity: 1, networkV: null },
+  accessList: [],
+  blobVersionedHashes: null
+}
+> await ethers.provider.getBalance(signers[0])
+9923998905886856820468n
+> s_bal
+9921998962194628468236n
+> cd.players
+[AsyncFunction: players] {
+  name: 'players',
+  _contract: BaseContract {
+    target: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+    interface: Interface {
+      fragments: [Array],
+      deploy: [ConstructorFragment],
+      fallback: null,
+      receive: false
+    },
+    runner: HardhatEthersSigner {
+      _gasLimit: 30000000,
+      address: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+      provider: [HardhatEthersProvider]
+    },
+    filters: {},
+    fallback: null,
+    [Symbol(_ethersInternal_contract)]: {}
+  },
+  _key: 'players',
+  getFragment: [Function: getFragment],
+  estimateGas: [AsyncFunction: estimateGas],
+  populateTransaction: [AsyncFunction: populateTransaction],
+  send: [AsyncFunction: send],
+  staticCall: [AsyncFunction: staticCall],
+  staticCallResult: [AsyncFunction: staticCallResult],
+  fragment: [Getter]
+}
+> cd.players[signers[0]]
+undefined
+> cd.players[{from: signers[0]}]
+undefined
+> cd.players(players[0])
+Uncaught ReferenceError: players is not defined
+> cd
+BaseContract {
+  target: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  interface: Interface {
+    fragments: [
+      [ConstructorFragment],
+      [EventFragment],
+      [EventFragment],
+      [EventFragment],
+      [EventFragment],
+      [FunctionFragment],
+      [FunctionFragment],
+      [FunctionFragment],
+      [FunctionFragment],
+      [FunctionFragment],
+      [FunctionFragment],
+      [FunctionFragment],
+      [FunctionFragment],
+      [FunctionFragment],
+      [FunctionFragment]
+    ],
+    deploy: ConstructorFragment {
+      type: 'constructor',
+      inputs: [],
+      payable: false,
+      gas: null
+    },
+    fallback: null,
+    receive: false
+  },
+  runner: HardhatEthersSigner {
+    _gasLimit: 30000000,
+    address: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+    provider: HardhatEthersProvider {
+      _hardhatProvider: [LazyInitializationProviderAdapter],
+      _networkName: 'localhost',
+      _blockListeners: [],
+      _transactionHashListeners: Map(0) {},
+      _eventListeners: []
+    }
+  },
+  filters: {},
+  fallback: null,
+  [Symbol(_ethersInternal_contract)]: {}
+}
+> cd.players(signers[0])
+Promise {
+  <pending>,
+  [Symbol(async_id_symbol)]: 6449,
+  [Symbol(trigger_async_id_symbol)]: 14
+}
+> await cd.players(signers[0])
+Result(2) [ 4n, 0n ]
+> var p = await cd.players(signers[0])
+undefined
+> p
+Result(2) [ 4n, 0n ]
+> p.wins
+4n
+> p.losses
+0n
+>
