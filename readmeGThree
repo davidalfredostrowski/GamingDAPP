@@ -1,0 +1,250 @@
+ubuntu@ip-172-31-24-70:~/gaming$ npx hardhat console --network localhost
+Welcome to Node.js v22.11.0.
+Type ".help" for more information.
+> const signers = await ethers.getSigners();
+undefined
+> const contract =  await ethers.getContractFactory("Gaming")
+undefined
+>  const cd = await contract.deploy()
+undefined
+> cd.fundGame({value: ethers.parseEther("100.0")})
+Promise {
+  <pending>,
+  [Symbol(async_id_symbol)]: 2888,
+  [Symbol(trigger_async_id_symbol)]: 14
+}
+> cd.setMysteryNumber(2)
+Promise {
+  <pending>,
+  [Symbol(async_id_symbol)]: 3134,
+  [Symbol(trigger_async_id_symbol)]: 14
+}
+>  await cd.winOrLoseTest(1, true, {from: signers[0] ,value: ethers.parseEther("1.0") })
+ContractTransactionResponse {
+  provider: HardhatEthersProvider {
+    _hardhatProvider: LazyInitializationProviderAdapter {
+      _providerFactory: [AsyncFunction (anonymous)],
+      _emitter: [EventEmitter],
+      _initializingPromise: [Promise],
+      provider: [BackwardsCompatibilityProviderAdapter]
+    },
+    _networkName: 'localhost',
+    _blockListeners: [],
+    _transactionHashListeners: Map(0) {},
+    _eventListeners: []
+  },
+  blockNumber: 4,
+  blockHash: '0x7f431ab5265b0ed10dd5b8296d412113acc55d67a68d04bbcef0c0b9d9e9fa1b',
+  index: undefined,
+  hash: '0xe1a06ad6ec47ce1ba798ac20452f7c329b702ad4587ade46da1cbca16fa556ac',
+  type: 2,
+  to: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+  nonce: 3,
+  gasLimit: 30000000n,
+  gasPrice: 751077427n,
+  maxPriorityFeePerGas: 180077547n,
+  maxFeePerGas: 751077427n,
+  maxFeePerBlobGas: null,
+  data: '0x5d64446200000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001',
+  value: 1000000000000000000n,
+  chainId: 31337n,
+  signature: Signature { r: "0x6b9d7df2135f15abbfc9d01fc2ee0f881b000040f4c7f7d8e59d83ab5f587f4f", s: "0x3a528b979e7515d1f7f153ccf05f8c96e63f1c942e8ac2f4435a3acd74cffe70", yParity: 1, networkV: null },
+  accessList: [],
+  blobVersionedHashes: null
+}
+> await cd.players(signers[0])
+Result(2) [ 0n, 1n ]
+> cd.setMysteryNumber(10)
+Promise {
+  <pending>,
+  [Symbol(async_id_symbol)]: 3776,
+  [Symbol(trigger_async_id_symbol)]: 14
+}
+>  await cd.winOrLoseTest(10, false, {from: signers[0] ,value: ethers.parseEther("1.0") })
+ContractTransactionResponse {
+  provider: HardhatEthersProvider {
+    _hardhatProvider: LazyInitializationProviderAdapter {
+      _providerFactory: [AsyncFunction (anonymous)],
+      _emitter: [EventEmitter],
+      _initializingPromise: [Promise],
+      provider: [BackwardsCompatibilityProviderAdapter]
+    },
+    _networkName: 'localhost',
+    _blockListeners: [],
+    _transactionHashListeners: Map(0) {},
+    _eventListeners: []
+  },
+  blockNumber: 6,
+  blockHash: '0x1d2c4fa6d36fff1e373c3a8f957751f92115750ab177728fb97b6172cd920024',
+  index: undefined,
+  hash: '0x0d40589a5032439c086e059cf48150389dcafe4102bdc1257e1234240fc04c4d',
+  type: 2,
+  to: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+  nonce: 5,
+  gasLimit: 30000000n,
+  gasPrice: 575600347n,
+  maxPriorityFeePerGas: 138027813n,
+  maxFeePerGas: 575600347n,
+  maxFeePerBlobGas: null,
+  data: '0x5d644462000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000000',
+  value: 1000000000000000000n,
+  chainId: 31337n,
+  signature: Signature { r: "0x933474a98f9c5b9a6fd02941c7a1b710e9772d6e9871465d5f92e66c4f7fb6a4", s: "0x13944441ed6bbf79da8f60560cd18097b17a2c6e42889048d33dd3eb377cce5e", yParity: 0, networkV: null },
+  accessList: [],
+  blobVersionedHashes: null
+}
+> await cd.players(signers[0])
+Result(2) [ 0n, 2n ]
+>  await cd.winOrLoseTest(1, false, {from: signers[0] ,value: ethers.parseEther("1.0") })
+ContractTransactionResponse {
+  provider: HardhatEthersProvider {
+    _hardhatProvider: LazyInitializationProviderAdapter {
+      _providerFactory: [AsyncFunction (anonymous)],
+      _emitter: [EventEmitter],
+      _initializingPromise: [Promise],
+      provider: [BackwardsCompatibilityProviderAdapter]
+    },
+    _networkName: 'localhost',
+    _blockListeners: [],
+    _transactionHashListeners: Map(0) {},
+    _eventListeners: []
+  },
+  blockNumber: 7,
+  blockHash: '0x3f1434ac482e3b67768dd85d13fd8e16e140eea2e6e07a8e78eea96c4fef8c88',
+  index: undefined,
+  hash: '0x298a1119687a4d0e92b7700a0340381e660da69e808523aa622d31c5825a411a',
+  type: 2,
+  to: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+  nonce: 6,
+  gasLimit: 30000000n,
+  gasPrice: 503845936n,
+  maxPriorityFeePerGas: 120805011n,
+  maxFeePerGas: 503845936n,
+  maxFeePerBlobGas: null,
+  data: '0x5d64446200000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000',
+  value: 1000000000000000000n,
+  chainId: 31337n,
+  signature: Signature { r: "0x509d619cf029b02fec5ca00b75ccd3404947faf3ba1fefb8ced0918cbc5ee72e", s: "0x0206fe3de0ad7c5b9ef931378c213f5115173970aa59cca6331197e79717ac19", yParity: 0, networkV: null },
+  accessList: [],
+  blobVersionedHashes: null
+}
+> await cd.players(signers[0])
+Result(2) [ 1n, 2n ]
+>  await cd.winOrLoseTest(1, true, {from: signers[0] ,value: ethers.parseEther("1.0") })
+ContractTransactionResponse {
+  provider: HardhatEthersProvider {
+    _hardhatProvider: LazyInitializationProviderAdapter {
+      _providerFactory: [AsyncFunction (anonymous)],
+      _emitter: [EventEmitter],
+      _initializingPromise: [Promise],
+      provider: [BackwardsCompatibilityProviderAdapter]
+    },
+    _networkName: 'localhost',
+    _blockListeners: [],
+    _transactionHashListeners: Map(0) {},
+    _eventListeners: []
+  },
+  blockNumber: 8,
+  blockHash: '0x1d15725efe0a3dabba3da0252eba059ca6959060e7a65bcc12cb86b1063aa7bb',
+  index: undefined,
+  hash: '0x17b76bbed1a67a74e0f6f4cbed68b175d584a94d16686c2346f8b14ad3812e41',
+  type: 2,
+  to: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+  nonce: 7,
+  gasLimit: 30000000n,
+  gasPrice: 441209829n,
+  maxPriorityFeePerGas: 105745443n,
+  maxFeePerGas: 441209829n,
+  maxFeePerBlobGas: null,
+  data: '0x5d64446200000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001',
+  value: 1000000000000000000n,
+  chainId: 31337n,
+  signature: Signature { r: "0x6826333fdbf6761983091d781243363f5312981ecce5d5b37a0633ef36a51713", s: "0x01ae39dfc4ceb1a5a1cde685249da772f49f5ab0b90ec06c5d756ea5c828e0c8", yParity: 0, networkV: null },
+  accessList: [],
+  blobVersionedHashes: null
+}
+> await cd.players(signers[0])
+Result(2) [ 1n, 3n ]
+> cd.setMysteryNumber(1)
+Promise {
+  <pending>,
+  [Symbol(async_id_symbol)]: 5272,
+  [Symbol(trigger_async_id_symbol)]: 14
+}
+>  await cd.winOrLoseTest(2, true, {from: signers[0] ,value: ethers.parseEther("1.0") })
+ContractTransactionResponse {
+  provider: HardhatEthersProvider {
+    _hardhatProvider: LazyInitializationProviderAdapter {
+      _providerFactory: [AsyncFunction (anonymous)],
+      _emitter: [EventEmitter],
+      _initializingPromise: [Promise],
+      provider: [BackwardsCompatibilityProviderAdapter]
+    },
+    _networkName: 'localhost',
+    _blockListeners: [],
+    _transactionHashListeners: Map(0) {},
+    _eventListeners: []
+  },
+  blockNumber: 10,
+  blockHash: '0x8be27b4bf465cb1435d1297246a05dcabfa295a1ff80085d21a68bb16b8a9718',
+  index: undefined,
+  hash: '0x9947d73ccab593c64bde130997922c488b843fd4a0e7f44889dd968033b4f7c6',
+  type: 2,
+  to: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+  nonce: 9,
+  gasLimit: 30000000n,
+  gasPrice: 338018243n,
+  maxPriorityFeePerGas: 81056099n,
+  maxFeePerGas: 338018243n,
+  maxFeePerBlobGas: null,
+  data: '0x5d64446200000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000001',
+  value: 1000000000000000000n,
+  chainId: 31337n,
+  signature: Signature { r: "0xf022b0f0513032492b83420382c8afe73325bd952e2a2db81e1b8e50ddccbb0f", s: "0x79fb4a2b90d75c13efe42647a6385a3cd3ed398b18114f17547aed1bf8324ca7", yParity: 0, networkV: null },
+  accessList: [],
+  blobVersionedHashes: null
+}
+> await cd.players(signers[0])
+Result(2) [ 2n, 3n ]
+>  await cd.winOrLoseTest(2, false, {from: signers[0] ,value: ethers.parseEther("1.0") })
+ContractTransactionResponse {
+  provider: HardhatEthersProvider {
+    _hardhatProvider: LazyInitializationProviderAdapter {
+      _providerFactory: [AsyncFunction (anonymous)],
+      _emitter: [EventEmitter],
+      _initializingPromise: [Promise],
+      provider: [BackwardsCompatibilityProviderAdapter]
+    },
+    _networkName: 'localhost',
+    _blockListeners: [],
+    _transactionHashListeners: Map(0) {},
+    _eventListeners: []
+  },
+  blockNumber: 11,
+  blockHash: '0xe5efd0a1289cb47eceb9297beb189cdf907e3b196b8a33272f4bba1c30d5f394',
+  index: undefined,
+  hash: '0x141415db6a514869a38c47534d714cd60818f6e7342e5c57710f3f1803e83a47',
+  type: 2,
+  to: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+  nonce: 10,
+  gasLimit: 30000000n,
+  gasPrice: 295900770n,
+  maxPriorityFeePerGas: 70942100n,
+  maxFeePerGas: 295900770n,
+  maxFeePerBlobGas: null,
+  data: '0x5d64446200000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000',
+  value: 1000000000000000000n,
+  chainId: 31337n,
+  signature: Signature { r: "0xfc0eac4b3a30bdaf94c9018a70f8d24a2454fceca4a3bd8b1f7f5806cf3e2f79", s: "0x7534f4837e19ca491b553cba491b6ed31eb6578d7d5fd76a92bc5bbaf62a8874", yParity: 1, networkV: null },
+  accessList: [],
+  blobVersionedHashes: null
+}
+> await cd.players(signers[0])
+Result(2) [ 2n, 4n ]
+>
