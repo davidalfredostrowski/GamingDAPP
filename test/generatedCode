@@ -1,0 +1,76 @@
+const { expect } = require("chai");
+const { ethers } = require("hardhat");
+
+describe("Gaming Contract", function () {
+  let Gaming, gaming, owner, addr1, addr2;
+
+  beforeEach(async function () {
+    // Deploy the contract
+    Gaming = await ethers.getContractFactory("Gaming");
+    [owner, addr1, addr2] = await ethers.getSigners();
+    gaming = await Gaming.deploy({ value: ethers.utils.parseEther("10") }); // Fund contract with 10 ETH
+    await gaming.deployed();
+  });
+
+  it("Should deploy with the correct owner and initial values", async function () {
+    expect(await gaming.owner()).to.equal(owner.address);
+    expect(await gaming.wins()).to.equal(0);
+    expect(await gaming.losses()).to.equal(0);
+  });
+
+  it("Should allow a player to win and update state correctly", async function () {
+    const wager = ethers.utils.parseEther("1");
+
+    // Call winOrLose with conditions that lead to a win
+    const tx = await gaming.connect(addr1).winOrLose(6, true, { value: wager }); // '6 > 5' (true)
+
+    // Wait for transaction to complete
+    const receipt = await tx.wait();
+
+    // Check emitted event
+    const roundCompleteEvent = receipt.events.find((e) => e.event === "RoundComplete");
+    expect(roundCompleteEvent.args.result).to.equal("won");
+
+    // Verify state changes
+    const player = await gaming.players(addr1.address);
+    expect(player.wins).to.equal(1);
+    expect(await gaming.wins()).to.equal(1);
+    expect(await ethers.provider.getBalance(gaming.address)).to.equal(ethers.utils.parseEther("9")); // Balance decreases by wager
+  });
+
+  it("Should allow a player to lose and update state correctly", async function () {
+    const wager = ethers.utils.parseEther("1");
+
+    // Call winOrLose with conditions that lead to a loss
+    const tx = await gaming.connect(addr1).winOrLose(4, false, { value: wager }); // '5 > 4' (false)
+
+    // Wait for transaction to complete
+    const receipt = await tx.wait();
+
+    // Check emitted event
+    const roundCompleteEvent = receipt.events.find((e) => e.event === "RoundComplete");
+    expect(roundCompleteEvent.args.result).to.equal("lost");
+
+    // Verify state changes
+    const player = await gaming.players(addr1.address);
+    expect(player.losses).to.equal(1);
+    expect(await gaming.losses()).to.equal(1);
+    expect(await ethers.provider.getBalance(gaming.address)).to.equal(ethers.utils.parseEther("11")); // Balance increases by wager
+  });
+
+  it("Should not allow non-owners to withdraw funds", async function () {
+    await expect(gaming.connect(addr1).withdrawFunds()).to.be.revertedWith("Only owner can call this function");
+  });
+
+  it("Should allow the owner to withdraw funds", async function () {
+    const initialOwnerBalance = await ethers.provider.getBalance(owner.address);
+    const contractBalance = await ethers.provider.getBalance(gaming.address);
+
+    const tx = await gaming.connect(owner).withdrawFunds();
+    await tx.wait();
+
+    const finalOwnerBalance = await ethers.provider.getBalance(owner.address);
+    expect(finalOwnerBalance).to.be.gt(initialOwnerBalance.add(contractBalance).sub(tx.gasUsed.mul(tx.effectiveGasPrice)));
+    expect(await ethers.provider.getBalance(gaming.address)).to.equal(0);
+  });
+});
